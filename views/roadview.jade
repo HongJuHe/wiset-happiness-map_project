@@ -1,0 +1,46 @@
+doctype html
+head
+  include ./head.jade
+  title Street View Containers
+  script(src='https://polyfill.io/v3/polyfill.min.js?features=default')
+  script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC9IdFMHYXFORRXqac0rnZnPfAhMfY0MpA&callback=initialize&libraries=&v=weekly' defer='')
+  style.
+    html,
+    body {
+    height: 95%;
+    }
+    #street-view {
+    height: 90%;
+    margin-top:50px;
+    width:100%;
+    }
+    #panel1 {
+    height:5%
+    width:100%;
+    overflow: scroll;
+    }
+
+  script.
+    let panorama;
+    function initialize() {
+        panorama = new google.maps.StreetViewPanorama(
+            document.getElementById("street-view"),
+            {
+                position: { lat: #{result[0]}, lng: #{result[1]} },
+                pov: { heading: 165, pitch: 0 },
+                zoom: 1,
+            }
+        );
+    }
+
+br
+#street-view
+br
+#panel1
+  h4.text-uppercase.mb-4 총 계단 개수: #{result[3]}
+  img(src= '#{result[2]}')
+br
+br
+
+#footer
+  include ./footer.jade

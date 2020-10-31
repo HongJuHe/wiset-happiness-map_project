@@ -1,0 +1,22 @@
+doctype html
+head
+  include ./head.jade
+
+// Masthead
+header.masthead.bg-primary.text-white.text-center
+  .container.d-flex.align-items-center.flex-column
+    // Masthead Avatar Image
+    img.masthead-avatar.mb-5(src='/bootstrap/img/2.png ' alt='')
+    // Masthead Heading
+    h1.masthead-heading.text-uppercase.mb-0= title
+    // Icon Divider
+    .divider-custom.divider-light
+      .divider-custom-line
+      .divider-custom-icon
+        i.fas.fa-star
+      .divider-custom-line
+    // Masthead Subheading
+    p.masthead-subheading.font-weight-light.mb-0 Search the obstacle
+
+#footer
+  include ./footer.jade

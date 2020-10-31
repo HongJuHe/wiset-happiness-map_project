@@ -1,0 +1,37 @@
+doctype html
+head
+  include ./head.jade
+section#contact.page-section
+  br
+  br
+  .container
+    // Contact Section Heading
+    h2.page-section-heading.text-center.text-uppercase.text-secondary.mb-0= title
+    // Icon Divider
+    .divider-custom
+      .divider-custom-line
+      .divider-custom-icon
+        i.fas.fa-star
+      .divider-custom-line
+    // Contact Section Form
+    .row
+      .col-lg-8.mx-auto
+        br
+        form(action='' method='post' name='submit')
+          .control-group
+            .form-group.floating-label-form-group.controls.mb-0.pb-2
+              h3.text-uppercase.mb-4 ADDERSS
+              label start point
+              input.form-control(name='start' type='text' placeholder='Start' required='required' data-validation-required-message='Please enter your start point.')
+              p.help-block.text-danger
+           .control-group
+            .form-group.floating-label-form-group.controls.mb-0.pb-2
+              label end point
+              input.form-control(name='final' type='text' placeholder='End' required='required' data-validation-required-message='Please enter your end point.')
+              p.help-block.text-danger
+          br
+          #success
+          .form-group
+            button.btn.btn-primary.btn-xl(type='submit') submit
+#footer
+  include ./footer.jade

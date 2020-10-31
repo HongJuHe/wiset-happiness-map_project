@@ -1,0 +1,77 @@
+doctype html
+head
+  title Street View Containers
+  include ./head.jade
+  script(src='https://polyfill.io/v3/polyfill.min.js?features=default')
+  script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC9IdFMHYXFORRXqac0rnZnPfAhMfY0MpA&callback=initialize&libraries=&v=weekly' defer='')
+  style(type='text/css').
+    html,
+    body {
+    height: 90%;
+    margin: 0;
+    padding: 0;
+    }
+    #map {
+    margin-top:50px;
+    height:90%;
+    float:left;
+    width:70%
+    }
+    #right-pannel {
+    margin-top:100px;
+    padding:10px;
+    overflow: scroll;
+    height:90%;
+    }
+ 
+  script.
+    console.log(#{result});
+    function initialize() {
+        const directionsService = new google.maps.DirectionsService();
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom:7,
+            center: {lat:#{result[0]}, lng:#{result[1]}}, 
+        });
+        const directionsRenderer = new google.maps.DirectionsRenderer({
+            draggable:true,
+            map,
+            panel: document.getElementById("right-pannel"),
+        });
+
+        directionsRenderer.addListener("directions_changed", () => {
+            //compute(directionsRenderer.getDirections());
+            console.log(directions_changed);
+        });
+
+
+
+        directionsService.route(
+        {
+            origin: {
+                lat: #{result[0]},
+                lng: #{result[1]}
+            },
+            destination: {
+                lat: #{result[2]},
+                lng: #{result[3]}
+            },
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidTolls:true,
+        },
+        (response, status) => {
+        if (status ==="OK") {
+            directionsRenderer.setDirections(response);
+        } else {
+            window.alert(status);
+           }
+        }
+      );
+    }
+br
+br
+br
+#map
+#right-pannel
+
+#footer
+    include ./footer.jade
